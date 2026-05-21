@@ -1,0 +1,107 @@
+{
+  "categories": [
+    { "id": "cat_history",  "name": "歷史",    "icon": "📜", "isFinal": false, "isMusic": false },
+    { "id": "cat_geo",      "name": "地理",    "icon": "🌏", "isFinal": false, "isMusic": false },
+    { "id": "cat_science",  "name": "科學",    "icon": "🔬", "isFinal": false, "isMusic": false },
+    { "id": "cat_art",      "name": "藝術",    "icon": "🎨", "isFinal": false, "isMusic": false },
+    { "id": "cat_music",    "name": "音樂",    "icon": "🎵", "isFinal": false, "isMusic": true  },
+    { "id": "cat_sports",   "name": "體育",    "icon": "⚽", "isFinal": false, "isMusic": false },
+    { "id": "cat_lit",      "name": "文學",    "icon": "📚", "isFinal": false, "isMusic": false },
+    { "id": "cat_general",  "name": "常識",    "icon": "💡", "isFinal": false, "isMusic": false },
+    { "id": "cat_movie",    "name": "電影",    "icon": "🎬", "isFinal": false, "isMusic": false },
+    { "id": "cat_food",     "name": "美食",    "icon": "🍜", "isFinal": false, "isMusic": false },
+    { "id": "cat_final",    "name": "最終挑戰","icon": "👑", "isFinal": true,  "isMusic": false }
+  ],
+
+  "powerups": [
+    { "id": "pu_skip",   "name": "跳過此題", "icon": "⏭️", "effect": "跳過目前題目，系統重新從同類別抽取一道新題目（不計失敗）" },
+    { "id": "pu_hint",   "name": "提示",     "icon": "💡", "effect": "主持人提供一個方向性提示，但不直接說出答案" },
+    { "id": "pu_redraw", "name": "換題",     "icon": "🔄", "effect": "換一道同類別的新題目（此次不扣分，視為重來）" }
+  ],
+
+  "questions": {
+
+    "cat_history": [
+      { "id": "A1", "type": "mc",  "question": "台灣在哪一年舉辦首次總統直選？", "options": ["1992年","1996年","2000年","2004年"], "answer": 1 },
+      { "id": "A2", "type": "qa",  "question": "清朝將台灣納入版圖是在哪一年？", "answer": "1683年" },
+      { "id": "A3", "type": "mc",  "question": "台灣日治時期始於哪一年？", "options": ["1895年","1900年","1910年","1920年"], "answer": 0 },
+      { "id": "A4", "type": "qa",  "question": "台灣光復節是幾月幾日？", "answer": "10月25日" },
+      { "id": "A5", "type": "image_qa", "question": "圖中這位歷史人物是誰？", "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Sun_Yat-sen_%281866-1925%29.jpg/220px-Sun_Yat-sen_%281866-1925%29.jpg", "fullImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Sun_Yat-sen_%281866-1925%29.jpg/220px-Sun_Yat-sen_%281866-1925%29.jpg", "answer": "孫中山" }
+    ],
+
+    "cat_geo": [
+      { "id": "B1", "type": "mc",  "question": "台灣最高峰玉山海拔約多少公尺？", "options": ["3,500m","3,952m","4,100m","2,800m"], "answer": 1 },
+      { "id": "B2", "type": "qa",  "question": "台灣面積最大的縣市是哪一個？", "answer": "花蓮縣" },
+      { "id": "B3", "type": "mc",  "question": "台灣本島最長的河流是哪條？", "options": ["淡水河","高屏溪","秀姑巒溪","大甲溪"], "answer": 1 },
+      { "id": "B4", "type": "qa",  "question": "台灣最南端的縣市是哪一個？", "answer": "屏東縣" },
+      { "id": "B5", "type": "image_mc", "question": "這張衛星圖中標示的島嶼是哪裡？", "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Taiwan_MODIS_2002212.jpg/220px-Taiwan_MODIS_2002212.jpg", "fullImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Taiwan_MODIS_2002212.jpg/220px-Taiwan_MODIS_2002212.jpg", "options": ["菲律賓","台灣","日本","韓國"], "answer": 1 }
+    ],
+
+    "cat_science": [
+      { "id": "C1", "type": "mc",  "question": "水的化學式是什麼？", "options": ["H2O","CO2","NaCl","O2"], "answer": 0 },
+      { "id": "C2", "type": "qa",  "question": "光在真空中每秒前進約幾公里？", "answer": "約30萬公里" },
+      { "id": "C3", "type": "mc",  "question": "人體最大的器官是什麼？", "options": ["肺","心臟","皮膚","肝臟"], "answer": 2 },
+      { "id": "C4", "type": "qa",  "question": "DNA雙螺旋結構由哪兩位科學家在1953年發現？", "answer": "Watson 和 Crick" }
+    ],
+
+    "cat_art": [
+      { "id": "D1", "type": "mc",  "question": "梵谷的名作《星夜》目前收藏在哪個博物館？", "options": ["羅浮宮","大都會博物館","紐約現代藝術博物館","奧賽美術館"], "answer": 2 },
+      { "id": "D2", "type": "qa",  "question": "達文西的名畫《蒙娜麗莎》目前展示在哪個城市？", "answer": "巴黎（羅浮宮）" },
+      { "id": "D3", "type": "mc",  "question": "印象派代表畫家莫內最知名的系列作品主題是？", "options": ["向日葵","睡蓮","星夜","吶喊"], "answer": 1 },
+      { "id": "D4", "type": "qa",  "question": "台灣故宮博物院最著名的鎮館之寶之一是什麼？", "answer": "翠玉白菜" },
+      { "id": "D5", "type": "image_mc", "question": "這幅畫作的作者是誰？", "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/200px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg", "fullImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/200px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg", "options": ["梵谷","達文西","莫內","畢卡索"], "answer": 1 }
+    ],
+
+    "cat_music": [
+      { "id": "E1", "type": "music_qa", "songName": "望春風",         "language": "中文", "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", "question": "這首歌的歌名是什麼？", "answer": "望春風" },
+      { "id": "E2", "type": "music_mc", "songName": "月亮代表我的心", "language": "中文", "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", "question": "這首歌是哪位歌手最具代表性的作品？", "options": ["鄧麗君","蔡琴","費玉清","張惠妹"], "answer": 0 },
+      { "id": "E3", "type": "music_qa", "songName": "愛拚才會贏",     "language": "中文", "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3", "question": "這首歌的歌名是什麼？", "answer": "愛拚才會贏" },
+      { "id": "E4", "type": "music_mc", "songName": "甜蜜蜜",         "language": "中文", "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3", "question": "這首歌的演唱者是誰？", "options": ["鳳飛飛","鄧麗君","江蕙","蔡依林"], "answer": 1 },
+      { "id": "E5", "type": "music_qa", "songName": "夜來香",         "language": "中文", "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3", "question": "這首歌的歌名是什麼？", "answer": "夜來香" },
+      { "id": "E6", "type": "music_mc", "songName": "高山青",         "language": "中文", "audioUrl": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3", "question": "這首歌描述的是台灣哪個地方的景色？", "options": ["日月潭","阿里山","玉山","太魯閣"], "answer": 1 }
+    ],
+
+    "cat_sports": [
+      { "id": "F1", "type": "mc",  "question": "足球世界盃每隔幾年舉辦一次？", "options": ["2年","4年","3年","5年"], "answer": 1 },
+      { "id": "F2", "type": "qa",  "question": "奧運五環旗的五種顏色分別是哪些？", "answer": "藍、黑、紅、黃、綠" },
+      { "id": "F3", "type": "mc",  "question": "NBA是哪個運動的職業聯賽？", "options": ["棒球","美式足球","籃球","冰上曲棍球"], "answer": 2 },
+      { "id": "F4", "type": "qa",  "question": "台灣棒球曾在哪一年首度奪得世界少棒冠軍？", "answer": "1969年" }
+    ],
+
+    "cat_lit": [
+      { "id": "G1", "type": "mc",  "question": "《西遊記》的主角孫悟空從哪裡誕生？", "options": ["崑崙山","花果山","泰山","華山"], "answer": 1 },
+      { "id": "G2", "type": "qa",  "question": "莎士比亞的四大悲劇包含哪四部？", "answer": "哈姆雷特、奧賽羅、李爾王、馬克白" },
+      { "id": "G3", "type": "mc",  "question": "《紅樓夢》的作者是誰？", "options": ["施耐庵","吳承恩","曹雪芹","羅貫中"], "answer": 2 },
+      { "id": "G4", "type": "qa",  "question": "台灣著名作家三毛的本名是什麼？", "answer": "陳懋平（後改名陳平）" }
+    ],
+
+    "cat_general": [
+      { "id": "H1", "type": "mc",  "question": "聯合國總部位於哪個城市？", "options": ["日內瓦","倫敦","紐約","巴黎"], "answer": 2 },
+      { "id": "H2", "type": "qa",  "question": "世界上面積最大的國家是哪個？", "answer": "俄羅斯" },
+      { "id": "H3", "type": "mc",  "question": "1 GB 等於多少 MB？", "options": ["100MB","512MB","1024MB","2048MB"], "answer": 2 },
+      { "id": "H4", "type": "qa",  "question": "人類正常體溫約為幾度攝氏？", "answer": "約37°C" }
+    ],
+
+    "cat_movie": [
+      { "id": "I1", "type": "mc",  "question": "電影《鐵達尼號》於哪一年上映？", "options": ["1995年","1996年","1997年","1998年"], "answer": 2 },
+      { "id": "I2", "type": "qa",  "question": "宮崎駿創立的動畫公司名稱是什麼？", "answer": "吉卜力工作室（Studio Ghibli）" },
+      { "id": "I3", "type": "mc",  "question": "《阿凡達》導演詹姆斯卡麥隆的另一部知名科幻電影是？", "options": ["星際大戰","魔鬼終結者","侏儸紀公園","駭客任務"], "answer": 1 },
+      { "id": "I4", "type": "qa",  "question": "奧斯卡金像獎的正式名稱是什麼？", "answer": "美國電影藝術與科學學院獎" }
+    ],
+
+    "cat_food": [
+      { "id": "J1", "type": "mc",  "question": "台灣著名小吃「蚵仔煎」的主要食材蚵仔是指什麼？", "options": ["蛤蜊","牡蠣（生蠔）","蝦子","花枝"], "answer": 1 },
+      { "id": "J2", "type": "qa",  "question": "義大利麵的義大利文原文是什麼？", "answer": "Pasta（帕斯塔）" },
+      { "id": "J3", "type": "mc",  "question": "「珍珠奶茶」發源自台灣哪個城市？", "options": ["台北","高雄","台中","台南"], "answer": 2 },
+      { "id": "J4", "type": "qa",  "question": "壽司的主要食材醋飯中加入了哪些調味料？", "answer": "醋、糖、鹽" },
+      { "id": "J5", "type": "image_mc", "question": "這道料理是什麼？", "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Oyster_vermicelli_02.jpg/220px-Oyster_vermicelli_02.jpg", "fullImageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Oyster_vermicelli_02.jpg/220px-Oyster_vermicelli_02.jpg", "options": ["蚵仔麵線","牛肉麵","擔仔麵","刀削麵"], "answer": 0 }
+    ],
+
+    "cat_final": [
+      { "id": "K1", "type": "mc",  "question": "【最終挑戰】台灣是全球第幾大半導體晶圓代工生產地？", "options": ["第一","第二","第三","第四"], "answer": 0 },
+      { "id": "K2", "type": "qa",  "question": "【最終挑戰】請說出台灣憲法正式名稱及施行年份。", "answer": "中華民國憲法，1947年施行" },
+      { "id": "K3", "type": "mc",  "question": "【最終挑戰】台積電（TSMC）由哪位創辦人在哪一年成立？", "options": ["曹興誠，1990年","張忠謀，1987年","施振榮，1985年","郭台銘，1989年"], "answer": 1 }
+    ]
+
+  }
+}
