@@ -605,18 +605,7 @@ function listenContestant(){
   onValue(ref(db,'rooms/'+roomCode+'/currentQuestion'),snap=>{
     const q=snap.val();
     if(!q||q.playerId!==myId)return;
-    // 音樂題換題：退回選歌畫面
-    if(q.type==='music_pick'){
-      const pool=QUESTIONS[q.catId]||[];
-      const ids=(q.musicPickIds||'').split(',');
-      musicPickOptions=ids.map(id=>pool.find(x=>x.id===id)).filter(Boolean);
-      if(musicPickOptions.length>0){
-        currentQuestion=null;
-        showMusicPickArea();
-      }
-      return;
-    }
-    // 一般題換題
+    // If question changed (redraw), update display
     if(currentQuestion&&q.id!==currentQuestion.id){
       const localQ=findQuestionById(q.catId,q.id);
       if(localQ){ currentQuestion=localQ; showQuestionArea(localQ); }
@@ -1039,27 +1028,24 @@ window.redrawQuestion=async function(){
   const q=snap.val();
   if(!q){toast('目前無題目');return;}
   const cat=CATEGORIES.find(c=>c.id===q.catId);
-  if(cat?.isMusic){
-    // 音樂題：重新抽 4 首歌，通知參賽者退回選歌畫面
-    const pool=QUESTIONS[q.catId]||[];
-    const usedSnap=await get(ref(db,'rooms/'+roomCode+'/usedQIds'));
-    const used=usedSnap.val()?Object.values(usedSnap.val()):[];
-    const available=pool.filter(x=>!used.includes(x.id));
-    if(available.length<1){toast('此音樂類別已無其他題目可換');return;}
-    const shuffled=[...available].sort(()=>Math.random()-0.5);
-    const newOptions=shuffled.slice(0,Math.min(4,shuffled.length));
-    const updates={};
-    newOptions.forEach(nq=>{updates[nq.id]=nq.id;});
-    await update(ref(db,'rooms/'+roomCode+'/usedQIds'),updates);
-    // 把新的 4 首歌寫入 Firebase，參賽者端監聽到後退回選歌畫面
-    await set(ref(db,'rooms/'+roomCode+'/currentQuestion'),{
-      id:'music_pick', type:'music_pick',
-      catId:q.catId, playerName:q.playerName, playerId:q.playerId,
-      musicPickIds:newOptions.map(nq=>nq.id).join(','),
-    });
-    toast('已重新抽題，參賽者請重新選歌');
-    return;
-  }
+  if(cat?.isMusic){toast('音樂題換題請由參賽者重新選擇歌曲');return;}
+  const pool=QUESTIONS[q.catId]||[];
+  const usedSnap=await get(ref(db,'rooms/'+roomCode+'/usedQIds'));
+  const used=usedSnap.val()?Object.values(usedSnap.val()):[];
+  const available=pool.filter(x=>!used.includes(x.id)&&x.id!==q.id);
+  if(available.length===0){toast('此類別已無其他題目可換');return;}
+  const newQ=available[Math.floor(Math.random()*available.length)];
+  await update(ref(db,'rooms/'+roomCode+'/usedQIds'),{[newQ.id]:newQ.id});
+  await set(ref(db,'rooms/'+roomCode+'/currentQuestion'),{
+    id:newQ.id, type:newQ.type, question:newQ.question,
+    options:newQ.options||null, answer:newQ.answer,
+    catId:q.catId, playerName:q.playerName, playerId:q.playerId,
+    audioUrl:newQ.audioUrl||null, songName:newQ.songName||null,
+    imageUrl:newQ.imageUrl||null, fullImageUrl:newQ.fullImageUrl||null,
+  });
+  toast('已重新抽題，參賽者畫面已更新');
+};
+
 // ── 頁面啟動時載入題庫 ───────────────────────────────────
 loadQuestions();
 </script>
