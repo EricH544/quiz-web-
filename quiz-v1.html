@@ -689,7 +689,7 @@ function showMusicPickArea(){
   const grid=document.getElementById('music-sel-grid');
   grid.innerHTML=musicPickOptions.map((q,i)=>`
     <button class="music-sel-btn" id="mpick-${i}" onclick="selectMusicSong(${i})">
-      ${maskSongName(q.songName)}
+      ${maskSongName(q.songName, q.language)}
     </button>`).join('');
   selectedMusicIdx=null;
 }
