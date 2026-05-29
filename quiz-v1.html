@@ -354,10 +354,18 @@ body { background: var(--dark); color: var(--text); font-family: 'Noto Sans TC',
           <span class="answer-value" id="host-answer"></span>
         </div>
       </div>
-      <div class="judge-row">
-        <button class="btn btn-teal" onclick="judgeAnswer(true)">✓ 答對</button>
-        <button class="btn btn-red" onclick="judgeAnswer(false)">✗ 答錯</button>
-        <button class="btn btn-ghost" onclick="redrawQuestion()">🔄 換題</button>
+      <div class="judge-row" id="judge-row">
+  	<button class="btn btn-teal" onclick="judgeAnswer(true)">✓ 答對</button>
+  	<button class="btn btn-red" onclick="judgeAnswer(false)">✗ 答錯</button>
+  	<button class="btn btn-ghost" onclick="redrawQuestion()">🔄 換題</button>
+      </div>
+      <div id="undo-row" style="display:none;margin-bottom:1rem;">
+  	<div style="font-size:12px;color:var(--gold);margin-bottom:6px;letter-spacing:1px;">已判定，是否更改？</div>
+  	<div style="display:flex;gap:10px;">
+    	  <button class="btn btn-teal" onclick="undoJudge(true)" style="flex:1;">✓ 更改為答對</button>
+    	  <button class="btn btn-red" onclick="undoJudge(false)" style="flex:1;">✗ 更改為答錯</button>
+    	  <button class="btn btn-ghost" onclick="cancelUndo()">取消</button>
+  	</div>
       </div>
     </div>
 
@@ -913,6 +921,8 @@ function listenHost(){
     }
     document.getElementById('host-no-question').style.display='none';
     document.getElementById('host-question-panel').style.display='block';
+    document.getElementById('judge-row').style.display='flex';
+    document.getElementById('undo-row').style.display='none';
     document.getElementById('host-current-player').textContent=q.playerName+' 正在作答';
 
     const typeMap={mc:'選擇題',qa:'問答題',image_mc:'圖片選擇題',image_qa:'圖片問答題',music_mc:'音樂選擇題',music_qa:'音樂問答題'};
@@ -1019,8 +1029,30 @@ window.judgeAnswer=async function(correct){
   if(!q)return;
   if(hostAudioEl){hostAudioEl.pause();hostIsPlaying=false;}
   await update(ref(db,'rooms/'+roomCode+'/musicControl'),{playing:false});
-  await set(ref(db,'rooms/'+roomCode+'/judgement/'+q.playerId),{result:correct?'correct':'wrong',ts:Date.now()});
+  await set(ref(db,'rooms/'+roomCode+'/judgement/'+q.playerId),{
+    result:correct?'correct':'wrong', ts:Date.now()
+  });
+  // 切換到更改模式
+  document.getElementById('judge-row').style.display='none';
+  document.getElementById('undo-row').style.display='block';
   toast(correct?'✅ 已判定：答對':'❌ 已判定：答錯');
+};
+
+window.undoJudge=async function(correct){
+  const snap=await get(ref(db,'rooms/'+roomCode+'/currentQuestion'));
+  const q=snap.val();
+  if(!q)return;
+  await set(ref(db,'rooms/'+roomCode+'/judgement/'+q.playerId),{
+    result:correct?'correct':'wrong', ts:Date.now()
+  });
+  document.getElementById('undo-row').style.display='none';
+  document.getElementById('judge-row').style.display='flex';
+  toast(correct?'✅ 已更改為：答對':'❌ 已更改為：答錯');
+};
+
+window.cancelUndo=function(){
+  document.getElementById('undo-row').style.display='none';
+  document.getElementById('judge-row').style.display='flex';
 };
 
 window.redrawQuestion=async function(){
